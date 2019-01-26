@@ -1,0 +1,18 @@
+{
+    "name": "orchief/restapi",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Orchief D",
+            "email": "orchief@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Orch\\": "src/"
+        }
+    }
+}
