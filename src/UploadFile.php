@@ -7,8 +7,6 @@
 
 namespace Orch;
 
-// 注意命名空间与 composer.json 中的一致
-
 class UploadFile
 {
     private $config = [
