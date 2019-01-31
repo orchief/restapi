@@ -17,7 +17,6 @@ use SDK\Kernel\Traits\HasHttpRequests;
 use GuzzleHttp\Client;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
-use Monolog\Logger;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -36,11 +35,6 @@ class BaseClient
     protected $app;
 
     /**
-     * @var \SDK\Kernel\Contracts\AccessTokenInterface
-     */
-    protected $accessToken;
-
-    /**
      * @var
      */
     protected $baseUri;
@@ -54,7 +48,6 @@ class BaseClient
     public function __construct(ServiceContainer $app, AccessTokenInterface $accessToken = null)
     {
         $this->app = $app;
-        $this->accessToken = $accessToken ?? $this->app['access_token'];
     }
 
     /**
@@ -134,26 +127,6 @@ class BaseClient
     }
 
     /**
-     * @return AccessTokenInterface
-     */
-    public function getAccessToken(): AccessTokenInterface
-    {
-        return $this->accessToken;
-    }
-
-    /**
-     * @param \SDK\Kernel\Contracts\AccessTokenInterface $accessToken
-     *
-     * @return $this
-     */
-    public function setAccessToken(AccessTokenInterface $accessToken)
-    {
-        $this->accessToken = $accessToken;
-
-        return $this;
-    }
-
-    /**
      * @param string $url
      * @param string $method
      * @param array  $options
@@ -209,28 +182,8 @@ class BaseClient
     {
         // retry
         $this->pushMiddleware($this->retryMiddleware(), 'retry');
-        // access token
-        $this->pushMiddleware($this->accessTokenMiddleware(), 'access_token');
         // log
         $this->pushMiddleware($this->logMiddleware(), 'log');
-    }
-
-    /**
-     * Attache access token to request query.
-     *
-     * @return \Closure
-     */
-    protected function accessTokenMiddleware()
-    {
-        return function (callable $handler) {
-            return function (RequestInterface $request, array $options) use ($handler) {
-                if ($this->accessToken) {
-                    $request = $this->accessToken->applyToRequest($request, $options);
-                }
-
-                return $handler($request, $options);
-            };
-        };
     }
 
     /**

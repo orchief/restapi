@@ -12,7 +12,6 @@
 namespace SDK\Feie\Printer;
 
 use SDK\Kernel\BaseClient;
-use SDK\Kernel\Support;
 
 /**
  * Class Client.
@@ -21,5 +20,36 @@ use SDK\Kernel\Support;
  */
 class Client extends BaseClient
 {
-    
+    /**
+     * 飞鹅打印机接口地址
+     *
+     * @var string
+     */
+    protected $api = 'http://api.feieyun.cn/Api/Open/';
+
+    /**
+     * 发送打印机指令.
+     *
+     * @param [type] $apiname 模块名称
+     * @param [type] $data    数据
+     */
+    public function post($apiname, $data)
+    {
+        $configs = $this->app->getConfig();
+
+        $time = time();
+        $sig = sha1($configs['USER'].$configs['UKEY'].$time);
+        $content = array(
+            'user' => $configs['USER'],
+            'stime' => $time,
+            'sig' => $sig,
+            'apiname' => $apiname,
+        );
+
+        $content = array_merge($content, $data);
+
+        // $queryStr = http_build_query($content);
+
+        return $this->httpGet($this->api, $content);
+    }
 }
