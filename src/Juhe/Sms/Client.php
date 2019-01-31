@@ -21,7 +21,7 @@ use SDK\Kernel\BaseClient;
 class Client extends BaseClient
 {
     protected $api = 'http://v.juhe.cn/sms/send';
-    protected $reason = '';
+    protected $error = '';
 
     /**
      * 发送短信
@@ -41,7 +41,7 @@ class Client extends BaseClient
         if ($content['error_code'] == 0) {
             return true;
         } else {
-            $this->reason = $content['reason'];
+            $this->error = $content['reason'];
 
             return false;
         }
@@ -50,8 +50,8 @@ class Client extends BaseClient
     /**
      * 获取错误消息.
      */
-    public function getReason()
+    public function getError()
     {
-        return $this->reason;
+        return $this->error;
     }
 }

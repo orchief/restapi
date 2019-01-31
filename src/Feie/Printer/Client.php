@@ -26,6 +26,7 @@ class Client extends BaseClient
      * @var string
      */
     protected $api = 'http://api.feieyun.cn/Api/Open/';
+    protected $error = '';
 
     /**
      * 发送打印机指令.
@@ -48,8 +49,16 @@ class Client extends BaseClient
 
         $content = array_merge($content, $data);
 
-        // $queryStr = http_build_query($content);
+        $res = $this->httpGet($this->api, $content);
 
-        return $this->httpGet($this->api, $content);
+        return $res;
+    }
+
+    /**
+     * 获取错误消息.
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 }

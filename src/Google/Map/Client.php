@@ -34,6 +34,7 @@ class Client extends BaseClient
      * @var string
      */
     protected $dataType = 'json';
+    protected $error = '获取成功！';
 
     /**
      * 路线规划.
@@ -63,8 +64,21 @@ class Client extends BaseClient
 
         $res = json_encode($curl->response);
         $res = json_decode($res, true);
+        if ($res['status'] == 'OK') {
+            return $res['routes'][0]['legs'][0]['distance']['value'];
+        } else {
+            $this->error = $res['error_message'];
 
-        return $res['routes'][0]['legs'][0]['distance']['value'];
+            return false;
+        }
+    }
+
+    /**
+     * 获取错误消息.
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 
     /**
@@ -96,6 +110,12 @@ class Client extends BaseClient
         $res = json_encode($curl->response);
         $res = json_decode($res, true);
 
-        return $res['results'][0]['geometry']['location'];
+        if ($res['status'] == 'OK') {
+            return $res['results'][0]['geometry']['location'];
+        } else {
+            $this->error = $res['error_message'];
+
+            return false;
+        }
     }
 }
