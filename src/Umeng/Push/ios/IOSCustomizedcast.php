@@ -2,7 +2,7 @@
 
 namespace SDK\Umeng\Push\ios;
 
-use SDK\Umeng\Push\iosNotification;
+use SDK\Umeng\Push\IOSNotification;
 
 class IOSCustomizedcast extends IOSNotification
 {

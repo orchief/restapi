@@ -2,7 +2,7 @@
 
 namespace SDK\Umeng\Push\android;
 
-use SDK\Umeng\Push\androidNotification;
+use SDK\Umeng\Push\AndroidNotification;
 
 class AndroidGroupcast extends AndroidNotification
 {
