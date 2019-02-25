@@ -70,6 +70,10 @@ class Client extends BaseClient
 
             $unicast->setPredefinedKeyValue('alert', $body);
 
+            if(isset($this->msgData['sound']) && $this->msgData['sound']){
+                $unicast->setPredefinedKeyValue('sound', $this->msgData['sound']);
+            }
+
             $unicast->setPredefinedKeyValue('production_mode', 'false');
 
             $unicast->send();
