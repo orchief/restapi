@@ -56,8 +56,6 @@ class Client extends BaseClient
 
         $url = $this->api.'directions/'.$this->dataType;
 
-        $curl->setProxy('127.0.0.1', '8888');
-
         $curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
 
         $curl->get($url, $data);
@@ -88,10 +86,6 @@ class Client extends BaseClient
      */
     public function geocoding($address)
     {
-        // return [
-        //     'lat'   =>  '39',
-        //     'lng'   =>  '117'
-        // ];
         $curl = new Curl();
         $configs = $this->app->getConfig();
         $data = [
@@ -100,8 +94,6 @@ class Client extends BaseClient
         ];
 
         $url = $this->api.'geocode/'.$this->dataType;
-
-        $curl->setProxy('127.0.0.1', '8888');
 
         $curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
 
