@@ -71,7 +71,7 @@ class Client extends BaseClient
             $unicast->setPredefinedKeyValue('alert', $body);
 
             if(isset($this->msgData['sound']) && $this->msgData['sound']){
-                $unicast->setPredefinedKeyValue('sound', $this->msgData['sound']);
+                $unicast->setPredefinedKeyValue('sound', $this->msgData['sound'] . '.caf');
             }
 
             $unicast->setPredefinedKeyValue('production_mode', 'false');
@@ -105,6 +105,10 @@ class Client extends BaseClient
             $unicast->setPredefinedKeyValue('ticker', $this->msgData['title']);
             $unicast->setPredefinedKeyValue('title', $this->msgData['title']);
             $unicast->setPredefinedKeyValue('text', $this->msgData['content']);
+
+            if(isset($this->msgData['sound']) && $this->msgData['sound']){
+                $unicast->setPredefinedKeyValue('sound', $this->msgData['sound'] . '.mp3');
+            }
 
             $unicast->setPredefinedKeyValue('after_open', 'go_activity');
             $unicast->setPredefinedKeyValue('activity', 'com.withcar.userapp.activity.InformActivity');
