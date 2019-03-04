@@ -74,7 +74,7 @@ class Client extends BaseClient
                 $unicast->setPredefinedKeyValue('sound', $this->msgData['sound'] . '.caf');
             }
 
-            $unicast->setPredefinedKeyValue('production_mode', 'false');
+            $unicast->setPredefinedKeyValue('production_mode', 'true');
 
             $unicast->send();
 
@@ -107,7 +107,7 @@ class Client extends BaseClient
             $unicast->setPredefinedKeyValue('text', $this->msgData['content']);
 
             if(isset($this->msgData['sound']) && $this->msgData['sound']){
-                $unicast->setPredefinedKeyValue('sound', $this->msgData['sound'] . '.mp3');
+                $unicast->setPredefinedKeyValue('play_sound', $this->msgData['sound'] . '.mp3');
             }
 
             $unicast->setPredefinedKeyValue('after_open', 'go_activity');
@@ -115,7 +115,7 @@ class Client extends BaseClient
 
             $unicast->setPredefinedKeyValue('production_mode', 'false');
 
-            $unicast->send();
+            $res = $unicast->send();
 
             return true;
         } catch (\Exception $e) {
