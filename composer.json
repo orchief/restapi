@@ -15,7 +15,7 @@
         "ext-openssl": "*",
         "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^6.2",
-        "monolog/monolog": "^1.22",
+        "monolog/monolog": "^2.0.2",
         "symfony/cache": "^3.3|^4.0",
         "symfony/http-foundation": "^2.7|^3.0|^4.0",
         "symfony/psr-http-message-bridge": "^0.3|^1.0",
