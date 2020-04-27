@@ -18,7 +18,7 @@
         "monolog/monolog": "^2.0.2",
         "symfony/cache": "^4.0|^5.0.7",
         "symfony/http-foundation": "^5.0.7",
-        "symfony/psr-http-message-bridge": "^0.3|^1.0",
+        "symfony/psr-http-message-bridge": "^0.3|^1.0|^2.0.0",
         "php-curl-class/php-curl-class": "^8.0"
     },
     "autoload": {
