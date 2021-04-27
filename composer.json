@@ -18,7 +18,9 @@
         "monolog/monolog": "^2.0.2",
         "symfony/cache": "^4.0|^5.0.7",
         "symfony/psr-http-message-bridge": "^0.3|^1.0|^v2.0.0",
-        "php-curl-class/php-curl-class": "^8.0"
+        "php-curl-class/php-curl-class": "^8.0",
+        "qiniu/php-sdk": "^7.3",
+        "aliyuncs/oss-sdk-php": "dev-master"
     },
     "autoload": {
         "psr-4": {"SDK\\": "src/"},
