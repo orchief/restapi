@@ -17,5 +17,6 @@ class Application extends ServiceContainer
      */
     protected $providers = [
         Qiniu\ServiceProvider::class,
+        Ali\ServiceProvider::class,
     ];
 }
